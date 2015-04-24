@@ -1,0 +1,19 @@
+/* Write your styles */
+.footer p {
+    color: #7f8c8d;
+    margin: 0;
+    padding: 15px 0;
+    text-align: center;
+    background: #2d3e50;
+}
+
+.banner {
+    background: #f5f5f5 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAB/lBMV…tmh4Z/nr8AiC1siJ4QBcjIYQtzx74/jF11cQDtTgjL0fn/B3nx6a7PXIC/AAAAAElFTkSuQmCC) left top repeat;
+    overflow-y: hidden;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.promot-words {
+    font-size: 200%;
+}
