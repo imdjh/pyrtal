@@ -28,7 +28,7 @@
   <meta name="msapplication-TileColor" content="#008000">
 
   <link rel="stylesheet" href="assets/css/amazeui.css"/>
-  <link rel="stylesheet" href="assets/css/my.css">
+  <link rel="stylesheet" href="assets/css/my.css"/>
 </head>
 <body>
 <header class="am-topbar am-topbar-fixed-top">
@@ -60,14 +60,16 @@
       </ul>
 
       <div class="am-topbar-right">
-          <p>
+      <div class="am-vertical-align" style="height: 50px;">
+          <div class="am-vertical-align-middle">
               <!-- Place this tag where you want the button to render. -->
               <a aria-label="Star imdjh/pyrtal on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/imdjh/pyrtal#stargazers_count" data-count-href="/ntkme/github-buttons/stargazers" data-style="mega" href="https://github.com/ntkme/github-buttons" class="github-button">Star</a>
               <!-- Place this tag where you want the button to render. -->
               <a aria-label="Fork imdjh/pyrtal on GitHub" data-style="mega" data-icon="octicon-git-branch" href="https://github.com/imdjh/pyrtal/fork" class="github-button">Fork</a>
               <!-- Place this tag where you want the button to render. -->
               <a aria-label="Download imdjh/pyrtal on GitHub" data-style="mega" data-icon="octicon-cloud-download" href="https://github.com/imdjh/pyrtal/archive/master.zip" class="github-button">Download</a>
-          </p>
+          </div>
+          </div>
       </div>
 
     </div>
@@ -83,28 +85,27 @@
         </div>
     </div>
 
-        <div class="am-g am-g-fixed am-cf">
+    <div class="am-g am-g-fixed">
             <div class="am-u-sm-4">
-                <h2 class="am-kai am-fr am-text-xxxl">
+                <h2 class="am-kai am-text-right am-text-xxxl">
                     弹指一挥间，
                 </h2>
             </div>
             <div class="am-u-sm-8"> </div>
-            <br class="am-cf"/>
-            <div class="am-u-sm-8"> </div>
-            <div class="am-u-sm-4">
-                <h2 class="am-kai am-fl am-text-xxxl">
+            <br />
+            <div class="am-u-sm-6"> </div>
+            <div class="am-u-sm-6">
+                <h2 class="am-kai am-text-left am-text-xxxl">
                     文件在眼前！
                 </h2>
             </div>
         </div>
   <div class="am-g am-g-fixed">
-      <form class="am-form" role="form" action="">
+      <form class="am-form" role="form" action="/portal">
           <div class="am-u-md-8 am-u-lg-9 am-u-sm-7">
             <div class="am-form-group am-form-icon am-form-group-md am-form-error">
                 <i class="am-icon-link am-icon-fw"></i>
-                <input type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL">
-
+                <input type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL" name="pyrtal-request">
             </div>
           </div>
           <div class="am-u-md-4 am-u-lg-3 am-u-sm-5">
@@ -117,32 +118,32 @@
 
   <div class="am-g am-g">
         <div class="am-u-sm-4">
-            <section class="am-panel am-panel-primary">
+            <section class="am-panel am-panel-primary" data-am-scrollspy="{animation:'slide-left', delay:300}">
                 <header class="am-panel-hd">
                     <h3 class="am-panel-title">步骤 1</h3>
                 </header>
                 <div class="am-panel-bd">
-                    <img src="" alt="Input URL">
+                    <img src="assets/i/step1.png" alt="Input URL">
                 </div>
             </section>
         </div>
         <div class="am-u-sm-4">
-            <section class="am-panel am-panel-primary">
+            <section class="am-panel am-panel-primary" data-am-scrollspy="{animation:'slide-left', delay:500}">
                 <header class="am-panel-hd">
                     <h3 class="am-panel-title">步骤 2</h3>
                 </header>
                 <div class="am-panel-bd">
-                    <img src="" alt="Watch Process">
+                    <img src="assets/i/step2.png" alt="Watch Process">
                 </div>
             </section>
         </div>
         <div class="am-u-sm-4">
-            <section class="am-panel am-panel-primary">
+            <section class="am-panel am-panel-primary" data-am-scrollspy="{animation:'slide-left', delay:700}">
                 <header class="am-panel-hd">
                     <h3 class="am-panel-title">步骤 3</h3>
                 </header>
                 <div class="am-panel-bd">
-                    <img src="" alt="Get File!">
+                    <img src="assets/i/setp3.png" alt="Get File!">
                 </div>
             </section>
         </div>
