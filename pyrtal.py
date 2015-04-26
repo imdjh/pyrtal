@@ -1,19 +1,25 @@
 #!/usr/bin/python3 --
 # Pyrtal is a file fetching proxy
 # TODO:
-##1. Check whether python3 is complied with openssl (will broken if with schema https)
 ##2. Support downloading with user inputed ftp username and password
 
 from flask import Flask, url_for, redirect
 import urllib.request
 import shutil
 import ftplib
+import importlib
+
+def checkdeps():
+    dep = importlib.find_loader('ssl')
+    if dep is None:
+        print('You needs python3 with SSL module to get fully functional')
+
+checkdeps()
 
 # fireup our flask app ;)
 app = Flask(__name__)
 
-@app.route('/<path:url>')
-## TODO-1
+@app.route('/portal/<path:url>')
 def portal(url):
     with urllib.request.urlopen(url) as response, open('/var/tmp/' + 'ramdom-bits', 'wb') as out_file:
         shutil.copyfileobj(response, out_file)
