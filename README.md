@@ -3,9 +3,9 @@
                  a file fetch application
 
 
-    ~ What is Flaskr?
+    ~ What is Pyrtal?
 
-      A sqlite powered, audit build-in, file fetch proxy
+      A sqlite powered, audit function build-in, file fetch proxy.
 
     ~ How do I use it?
 
@@ -24,8 +24,8 @@
          sudo nginx -s reload
 
          the application will greet you on
-         http://localhost:5000/
+         http://localhost/
 
-    ~ Is it tested?
+    ~ Does it has test unit yet?
 
          Nup
