@@ -1,10 +1,19 @@
 /* Write your styles */
+.footer-fix p,
 .footer p {
     color: #7f8c8d;
     margin: 0;
     padding: 15px 0;
     text-align: center;
     background: #2d3e50;
+}
+
+.footer-fix {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
 }
 
 .logoreplace {
