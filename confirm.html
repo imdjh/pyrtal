@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Pyrtal | 一个拍头想到的网站 ;)</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="弹指一挥间，文件在眼前">
+  <meta name="keywords" content="pyrtal, flask, shiyanlou">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="green">
+  <meta name="apple-mobile-web-app-title" content="Pyrtal">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#008000">
+
+  <link rel="stylesheet" href="assets/css/amazeui.css"/>
+  <link rel="stylesheet" href="assets/css/my.css"/>
+</head>
+<body>
+<header class="am-topbar-inverse am-topbar-fixed-top">
+  <div class="am-container">
+    <h2 class="am-topbar-brand">Pyrtal</h2>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
+            data-am-collapse="{target: '#collapse-head'}"><span class="am-sr-only">导航切换</span> <span
+        class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="collapse-head">
+      <ul class="am-nav am-nav-pills am-topbar-nav">
+        <li class="am-active"><a href="/">首页</a></li>
+        <li ><a href="http://www.djh.im" target="_blank">关于作者</a></li>
+        <li class="am-dropdown" data-am-dropdown>
+          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+            下拉菜单 <span class="am-icon-caret-down"></span>
+          </a>
+          <ul class="am-dropdown-content">
+            <li class="am-dropdown-header">标题</li>
+            <li><a href="#">1. 默认样式</a></li>
+            <li><a href="#">2. 基础设置</a></li>
+            <li><a href="#">3. 文字排版</a></li>
+            <li><a href="#">4. 网格系统</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="am-topbar-right">
+        <div class="am-vertical-align" style="height: 50px;">
+          <div class="am-vertical-align-middle">
+              <!-- Place this tag where you want the button to render. -->
+              <a aria-label="Star imdjh/pyrtal on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/imdjh/pyrtal#stargazers_count" data-count-href="/ntkme/github-buttons/stargazers" data-style="mega" href="https://github.com/ntkme/github-buttons" class="github-button">Star</a>
+              <!-- Place this tag where you want the button to render. -->
+              <a aria-label="Fork imdjh/pyrtal on GitHub" data-style="mega" data-icon="octicon-git-branch" href="https://github.com/imdjh/pyrtal/fork" class="github-button">Fork</a>
+              <!-- Place this tag where you want the button to render. -->
+              <a aria-label="Download imdjh/pyrtal on GitHub" data-style="mega" data-icon="octicon-cloud-download" href="https://github.com/imdjh/pyrtal/archive/master.zip" class="github-button">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+<div class="am-g am-g-fix">
+    <div class="am-u-sm-8 am-u-sm-offset-2">
+        <div class="am-article">
+            <div class="am-article-bd">
+                <p class="am-text-xxxl">
+                    这看起来像是有人给你推荐了，这个特定的甜甜圈。。。
+                </p>
+                <br />
+                <p class="am-text-xxl">
+                    所以说，你已经决定要打开它了么？
+                </p>
+                <p class="am-text-xxl" style="color: red !important;">
+                    Don't Panic!
+                </p>
+            </div>
+        </div>
+    </div>
+                <div class="am-g am-g-fix">
+                    <div class="am-u-sm-1 am-u-sm-offset-3">
+                        <button type="submit" name="yes" class="am-btn am-btn-primary am-btn-lg">
+                            <i class="am-icon-coffee am-icon-fx"></i>&nbsp;&nbsp;我已经准备好了
+                        </button>
+                    </div>
+                    <div class="am-u-sm-1 am-u-sm-offset-2">
+                        <button type="submit" name="yes" class="am-btn am-btn-primary am-btn-lg">
+                            <i class="am-icon-thumbs-down am-icon-fx"></i>&nbsp;&nbsp;赶紧带我离开这里
+                        </button>
+                    </div>
+                </div>
+
+</div>
+
+
+<footer class="footer-fix">
+  <p>© 2015 <a href="http://www.djh.im" target="_blank">.im.djh presents</a> Licensed under <a
+      href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a></p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>
