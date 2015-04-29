@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="assets/css/amazeui.css"/>
   <link rel="stylesheet" href="assets/css/my.css"/>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 <header class="am-topbar-inverse am-topbar-fixed-top">
   <div class="am-container">
     <h2 class="am-topbar-brand">Pyrtal</h2>
@@ -43,28 +43,14 @@
       <ul class="am-nav am-nav-pills am-topbar-nav">
         <li class="am-active"><a href="/">首页</a></li>
         <li ><a href="http://www.djh.im" target="_blank">关于作者</a></li>
-        <li class="am-dropdown" data-am-dropdown>
-          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-            下拉菜单 <span class="am-icon-caret-down"></span>
-          </a>
-          <ul class="am-dropdown-content">
-            <li class="am-dropdown-header">标题</li>
-            <li><a href="#">1. 默认样式</a></li>
-            <li><a href="#">2. 基础设置</a></li>
-            <li><a href="#">3. 文字排版</a></li>
-            <li><a href="#">4. 网格系统</a></li>
-          </ul>
-        </li>
       </ul>
 
       <div class="am-topbar-right">
-        <div class="am-vertical-align" style="height: 50px;">
+          <div class="am-vertical-align">
           <div class="am-vertical-align-middle">
               <!-- Place this tag where you want the button to render. -->
-              <a aria-label="Star imdjh/pyrtal on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/imdjh/pyrtal#stargazers_count" data-count-href="/ntkme/github-buttons/stargazers" data-style="mega" href="https://github.com/ntkme/github-buttons" class="github-button">Star</a>
-              <!-- Place this tag where you want the button to render. -->
+              <a class="github-button" href="https://github.com/imdjh/pyrtal" data-style="mega" data-count-href="/imdjh/pyrtal/stargazers" data-count-api="/repos/imdjh/pyrtal#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star imdjh/pyrtal on GitHub">Star</a>
               <a aria-label="Fork imdjh/pyrtal on GitHub" data-style="mega" data-icon="octicon-git-branch" href="https://github.com/imdjh/pyrtal/fork" class="github-button">Fork</a>
-              <!-- Place this tag where you want the button to render. -->
               <a aria-label="Download imdjh/pyrtal on GitHub" data-style="mega" data-icon="octicon-cloud-download" href="https://github.com/imdjh/pyrtal/archive/master.zip" class="github-button">Download</a>
           </div>
         </div>
@@ -74,82 +60,68 @@
   </div>
 </header>
 
-<div class="banner">
+<div id="banner">
+    <div class="am-vertical-align">
+        <div class="am-vertical-align-middle">
     <div class="am-g am-g-fixed">
-        <div id="resp-resize">
-            <div class="am-animation-scale-up">
-                <div class="logoreplace">
-                    <h1><a href="/" class="am-text-ir">Pyrtal</a></h1>
-                </div>
+        <div class="am-animation-scale-up">
+            <div class="logoreplace">
+                <h1 class="am-cf"><a href="/" class="am-center am-text-ir" id="autoajust-logo">Pyrtal</a></h1>
             </div>
         </div>
-        <div class="am-u-sm-5">
-            <h2 class="am-kai am-text-right am-text-xxxl">
-                弹指一挥间，
-            </h2>
-        </div>
-        <div class="am-u-sm-7"> </div>
-        <br />
-        <div class="am-u-sm-5" style="height: 10px;"> </div>
-        <div class="am-u-sm-7">
-            <h2 class="am-kai am-text-left am-text-xxxl">
-                文件在眼前！
-            </h2>
+        <ul class="am-avg-sm-3">
+            <li>
+                <h2 class="am-kai am-text-right am-text-xxl autoajust-text">
+                    弹指
+                </h2>
+            </li>
+            <li>
+                <h2 class="am-kai am-text-left autoajust-text am-text-xxl ">
+                    一挥间，
+                </h2>
+            </li>
+            <li style="height: 10px;"></li>
+            <li style="height: 10px;"></li>
+            <li>
+                <h2 class="am-kai am-text-right autoajust-text am-text-xxl">
+                    文件
+                </h2>
+            </li>
+            <li>
+                <h2 class="am-kai am-text-left autoajust-text am-text-xxl">
+                    在眼前！
+                </h2>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+</div>
+<div class="am-vertical-align" >
+    <div class="am-vertical-align-middle">
+        <div id="pyrtal-interface">
+            <div class="am-g-collapse">
+                <form class="am-form" role="form" action="/portal">
+                    <div class="am-u-sm-1" style="height: 10px;"></div>
+                    <div class="am-u-sm-8">
+                        <div class="am-form-group am-form-icon am-form-group-md am-form-error">
+                            <i class="am-icon-link am-icon-fw"></i>
+                            <input type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL" name="pyrtal-request">
+                        </div>
+                    </div>
+                    <div class="am-u-sm-2">
+                        <button type="submit" class="am-btn am-btn-primary am-btn-lg"><i class="am-icon-download"></i> 提 交</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-  <div class="am-g">
-      <form class="am-form" role="form" action="/portal">
-    <div class="am-u-sm-2" style="height: 10px;"></div>
-          <div class="am-u-sm-7">
-            <div class="am-form-group am-form-icon am-form-group-md am-form-error">
-                <i class="am-icon-link am-icon-fw"></i>
-                <input type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL" name="pyrtal-request">
-            </div>
-          </div>
-          <div class="am-u-sm-3">
-            <button type="submit" class="am-btn am-btn-primary am-btn-lg"><i class="am-icon-download"></i> 提 交</button>
-          </div>
-    </form>
-  </div>
 </div>
 
-        <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
 
-  <div class="am-g am-g">
-        <div class="am-u-sm-4">
-            <section class="am-panel am-panel-primary" data-am-scrollspy="{animation:'slide-left', delay:300}">
-                <header class="am-panel-hd">
-                    <h3 class="am-panel-title">步骤 1</h3>
-                </header>
-                <div class="am-panel-bd">
-                    <img src="/assets/i/step1.jpg" alt="Input URL">
-                </div>
-            </section>
-        </div>
-        <div class="am-u-sm-4">
-            <section class="am-panel am-panel-primary" data-am-scrollspy="{animation:'slide-left', delay:500}">
-                <header class="am-panel-hd">
-                    <h3 class="am-panel-title">步骤 2</h3>
-                </header>
-                <div class="am-panel-bd">
-                    <img src="/assets/i/step2.jpg" alt="Watch Process">
-                </div>
-            </section>
-        </div>
-        <div class="am-u-sm-4">
-            <section class="am-panel am-panel-primary" data-am-scrollspy="{animation:'slide-left', delay:700}">
-                <header class="am-panel-hd">
-                    <h3 class="am-panel-title">步骤 3</h3>
-                </header>
-                <div class="am-panel-bd">
-                    <img src="/assets/i/step3.jpg" alt="Get File!">
-                </div>
-            </section>
-        </div>
-  </div>
-<footer class="footer">
-  <p>© 2015 <a href="http://www.djh.im" target="_blank">.im.djh presents</a> Licensed under <a
-      href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a></p>
+<footer class="footer-fixed">
+  <p class="autoajust-text">© 2015 <a href="http://www.djh.im" target="_blank" class="autoajust-text">.im.djh presents</a> Licensed under <a
+      class="autoajust-text" href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a></p>
 </footer>
 
 <!--[if lt IE 9]>
@@ -166,5 +138,64 @@
 <!--<![endif]-->
 <!-- Place this tag right after the last button or just before your close body tag. -->
 <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script>
+$(document).ready(function() {
+    var header_height = $('#collapse-head').height();
+    var footer_height = $('#footer-fixed').height();
+    var content_height = $(window).height() - header_height - footer_height;
+    var content_width = $(window).width();
+    //高度修正
+    $('.am-vertical-align-middle').css('width', '100%');
+    $('.am-vertical-align').css('height', '100%');
+
+    //宣传语自适应
+    if (content_height < 400 || $(window).width() < 400) {
+        $('.autoajust-text').css('font-size', '120%');
+    }
+
+    //高度自适应
+    if (content_height < 400) {
+        $('#autoajust-logo').css('display', 'none');
+        $('#banner').css('height', content_height * .50);
+    } else {
+        $('#autoajust-logo').css('width', '75%');
+        var correct_height = $('#autoajust-logo').innerWidth();
+        $('#autoajust-logo').css('height', correct_height / 10 * 3);
+        $('#banner').css('height', content_height * .70);
+    }
+    $('.am-topbar-right').css('height', header_height);
+    $('#pyrtal-interface').css('height', content_height * .20);
+
+});
+
+$(window).resize(function() {
+    //获取新数值
+    var header_height = $('#collapse-head').height();
+    var footer_height = $('#footer-fixed').height();
+    var content_height = $(window).height() - header_height - footer_height;
+    var content_width = $(window).width();
+
+    //宣传语自适应
+    if (content_height < 400 || $(window).width() < 400) {
+        $('.autoajust-text').css('font-size', '120%');
+    } else {
+        $('.autoajust-text').removeAttr('style');
+    }
+
+    //高度自适应
+    if (content_height < 400) {
+        $('#autoajust-logo').css('display', 'none');
+        $('#banner').css('height', content_height * .50);
+    } else {
+        $('#autoajust-logo').css('display', 'block');
+        $('#autoajust-logo').css('width', '75%');
+        var correct_height = $('#autoajust-logo').innerWidth();
+        $('#autoajust-logo').css('height', correct_height / 10 * 3);
+        $('#banner').css('height', content_height * .70);
+    }
+    $('.am-topbar-right').css('height', header_height);
+    $('#pyrtal-interface').css('height', content_height * .20);
+});
+</script>
 </body>
 </html>
