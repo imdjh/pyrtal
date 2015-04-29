@@ -25,7 +25,6 @@
 
 .logoreplace a {
     display: block;
-    background-image: url(/assets/i/logo.png) !important;
     background-repeat: repeat;
     background-position: top left;
     -webkit-background-size: auto auto;

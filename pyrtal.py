@@ -2,7 +2,7 @@
 # Pyrtal is a lightweight file fetching proxy
 # TODO:
 
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, render_template, send_from_directory, request
 import requests
 import shutil
 import ftplib
@@ -18,6 +18,14 @@ def portal(url):
         shutil.copyfileobj(response, out_file)
     return redirect('http://localhost/' + 'ramdom-bits', code=301)
 
+@app.route('/')
+def offer_index():
+    return render_template('index.html')
+
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def offer_robotsrule():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 @app.route('/ftp')
 def ftpportal():

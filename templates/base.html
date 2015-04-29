@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html class="no-js">
-<head lang="en">
+<head>
   <meta charset="UTF-8">
-  <title>Pyrtal | 一个拍头想到的网站 ;)</title>
+  <title>{% block title %} {% endblock %} | Pyrtal | 一个拍头想到的网站 ;)</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="弹指一挥间，文件在眼前">
-  <meta name="keywords" content="pyrtal, flask, shiyanlou">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="pyrtal, flask, proxy">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/i/favicon.png') }}">
+  <link rel="alternate icon" type="image/png" href="{{ url_for('static', filename='assets/i/favicon.png') }}">
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
-
+  <link rel="icon" sizes="192x192" href="{{ url_for('static', filename='assets/i/app-icon72x72@2x.png') }}">
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="green">
   <meta name="apple-mobile-web-app-title" content="Pyrtal">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-
+  <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='assets/i/app-icon72x72@2x.png') }}">
   <!-- Tile icon for Win8 (144x144 + tile color) -->
-  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileImage" content="{{ url_for('static', filename='assets/i/app-icon72x72@2x.png') }}">
   <meta name="msapplication-TileColor" content="#008000">
 
-  <link rel="stylesheet" href="assets/css/amazeui.css"/>
-  <link rel="stylesheet" href="assets/css/my.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/amazeui.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/my.css') }}"/>
 </head>
 <body style="overflow-x: hidden;">
 <header class="am-topbar-inverse am-topbar-fixed-top">
@@ -60,63 +57,10 @@
   </div>
 </header>
 
-<div id="banner">
-    <div class="am-vertical-align">
-        <div class="am-vertical-align-middle">
-    <div class="am-g am-g-fixed">
-        <div class="am-animation-scale-up">
-            <div class="logoreplace">
-                <h1 class="am-cf"><a href="/" class="am-center am-text-ir" id="autoajust-logo">Pyrtal</a></h1>
-            </div>
-        </div>
-        <ul class="am-avg-sm-3">
-            <li>
-                <h2 class="am-kai am-text-right am-text-xxl autoajust-text">
-                    弹指
-                </h2>
-            </li>
-            <li>
-                <h2 class="am-kai am-text-left autoajust-text am-text-xxl ">
-                    一挥间，
-                </h2>
-            </li>
-            <li style="height: 10px;"></li>
-            <li style="height: 10px;"></li>
-            <li>
-                <h2 class="am-kai am-text-right autoajust-text am-text-xxl">
-                    文件
-                </h2>
-            </li>
-            <li>
-                <h2 class="am-kai am-text-left autoajust-text am-text-xxl">
-                    在眼前！
-                </h2>
-            </li>
-        </ul>
-    </div>
-    </div>
-</div>
-</div>
-<div class="am-vertical-align" >
-    <div class="am-vertical-align-middle">
-        <div id="pyrtal-interface">
-            <div class="am-g-collapse">
-                <form class="am-form" role="form" action="/portal">
-                    <div class="am-u-sm-1" style="height: 10px;"></div>
-                    <div class="am-u-sm-8">
-                        <div class="am-form-group am-form-icon am-form-group-md am-form-error">
-                            <i class="am-icon-link am-icon-fw"></i>
-                            <input type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL" name="pyrtal-request">
-                        </div>
-                    </div>
-                    <div class="am-u-sm-2">
-                        <button type="submit" class="am-btn am-btn-primary am-btn-lg"><i class="am-icon-download"></i> 提 交</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+{% block content %}
+    {% block banner %} {% endblock %}
+    {% block functional_area %} {% endblock %}
+{% endblock %}
 
 
 <footer class="footer-fixed">
@@ -127,14 +71,14 @@
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/polyfill/rem.min.js"></script>
-<script src="assets/js/polyfill/respond.min.js"></script>
-<script src="assets/js/amazeui.legacy.js"></script>
+<script src="{{ url_for('static', filename='assets/js/polyfill/rem.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/polyfill/respond.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/amazeui.legacy.js') }}"></script>
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/amazeui.min.js') }}"></script>
 <!--<![endif]-->
 <!-- Place this tag right after the last button or just before your close body tag. -->
 <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
@@ -197,5 +141,7 @@ $(window).resize(function() {
     $('#pyrtal-interface').css('height', content_height * .20);
 });
 </script>
+{% block add_js %}
+{% endblock %}
 </body>
 </html>
