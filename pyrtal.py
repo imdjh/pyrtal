@@ -12,7 +12,27 @@ import importlib
 # fireup our flask app ;)
 app = Flask(__name__)
 
-@app.route('/portal/<path:url>')
+@app.route('/entry/<path:url>', method=['GET', 'POST'])
+def recv_request(url):
+    if request.method == 'POST':
+        # bind request varibles to object 'g'
+        request['json'].bindto('g')
+    else:
+        filter_uri()
+    satisfy()
+
+def satisfy():
+    # read varible from g
+    schema = g.get('schema')
+    host = g.get('host')
+    path = g.get('path')
+    port = g.get('port')
+    username = g.get('usernmae')
+    passwd = g.get('passwd')
+
+
+
+@app.route('/portal/<path:url>', method=['GET', 'POST'])
 def portal(url):
     with urllib.request.urlopen(url) as response, open('/var/tmp/' + 'ramdom-bits', 'wb') as out_file:
         shutil.copyfileobj(response, out_file)
