@@ -37,12 +37,13 @@ re_query = re.compile(app.config['BL_QUERY'])
 
 # Let's web2.0
 @app.route('/')
+# TODO: if have cookie, go to offer_lie()
 def entry(method=['GET', 'POST']):
     if request.method == 'GET':
-        g.fetchuri = request.args.get('fetch').strip()
-        if g.fetchuri is None:
+        if request.args.get('fetch') is None:
             return render_template('index.html')
         else:
+            g.fetchuri = request.args.get('fetch').strip()
             filter_uri()
     else:
         #TODO: Convert JSON recved bind to g
@@ -51,7 +52,7 @@ def entry(method=['GET', 'POST']):
 
 def filter_uri():
     r = urlsplit(getattr(g, 'fetchuri'), 'http', False)
-    if r.hostname is None:
+    if r.netloc is None:
         rescue_broken_uri()
     else:
         g.scheme = r.scheme
@@ -74,7 +75,8 @@ def satisfy_config():
 
     if re_host.search(host) or re_port.search(port) or re_query.search(query) or re_scheme.search(scheme):
         raise
-    # OK, now I am satified, offer tempf to cache content
+    # OK, now I am satisfied, offer tempf to cache content
+    g.downloading = 1
     g.filename = path.split('/')[-1]
     g.tempfile = os.path.join(app.config['TMP_DIR'],
             '_'.join([str(int(time.time())),
@@ -91,11 +93,16 @@ def rescue_broken_uri():
     filter_uri()
 
 def fetchuri():
+    # TODO: pleasure people with cookie
     with open(getattr(g, 'tempfile'), 'wb') as fd:
+        # TODO: exception about connection
+        # TODO: requests.exceptions.ConnectionError
+        req_header = {'User-Agent': 'pyrtal/0.0.1', 'Host': getattr(g, 'host')}
         r = requests.get(getattr(g, 'scheme') + '://' + getattr(g, 'user') + ':'
                 + getattr(g, 'passwd') + '@' + getattr(g, 'host') + ':' +
                 getattr(g, 'port') + getattr(g, 'path') + getattr(g, 'query'),
-                stream=True)
+                stream=True, headers=req_header)
+        raise
         if r.status_code != requests.codes.ok:
             raise
         for block in r.iter_content(app.config['BUFFER_SIZE']):
@@ -106,18 +113,39 @@ def fetchuri():
             os.fsync(fd.fileno())
 
     gc.collect()
+
+    # Download ends
+    g.downloading = 0
     offer_lie()
 
 def offer_lie():
-    hash = sha256_first128b_ver3(getattr(g, 'tempfile'), hashlib.sha256)
+    f_hash = sha256_first128b_ver3(getattr(g, 'tempfile'), hashlib.sha256())
     stat = os.stat(getattr(g, 'tempfile'))
+    f_time = time.asctime(time.localtime(stat.st_mtime))
+    f_size = stat.st_size
+    return render_template('offer.html', size=f_size, time=f_time,
+            hash=f_hash, dluri='http://z.cn', filename=getattr(g,
+                'filename'), fetchuri=getattr(g, 'fetchuri'),
+            dlstatus=getattr(g, 'downloading'))
 
-    pass
+
 
 def sha256_first128b_ver3(afile, hasher, blocksize=128):
         with open(afile, 'rb') as buf:
             hasher.update(buf.read(blocksize))
             return hasher.hexdigest()
+
+
+# Temp area
+@app.route('/dl')
+def setupdlpage():
+    return render_template('offer.html', size=55555,
+            time=time.asctime(time.localtime()), hash=
+            sha256_first128b_ver3('/etc/passwd', hashlib.sha256()),
+            dluri='2', filename='yolo', fetchuri='https://we.djh.im', dlstatus=0)
+    raise
+
+
 
 
 

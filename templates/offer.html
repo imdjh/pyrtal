@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}提供下载{% endblock %}
+{% block banner %}
+<div id="banner">
+    <div class="am-vertical-align">
+        <div class="am-vertical-align-middle">
+          <div class="am-animation-scale-up">
+            <div class="logoreplace">
+                <h1 class="am-cf"><a href="/" class="am-center am-text-ir" id="autoajust-logo" style=" background-image: url({{ url_for('static', filename='assets/i/logo.png') }}) !important; ">Pyrtal</a></h1>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block functional_area %}
+<div class="am-vertical-align" id="pyrtal-interface" class="am-cf"> >
+    <div class="am-vertical-align-middle">
+            {% if dlstatus == 1 %}
+            <div id="pbar" class="am-center am-progress am-progress-striped am-progress-lg am-active">
+                <div id="ptext" class="am-progress-bar am-progress-bar-secondary" style="width:1%">1%</div>
+            </div>
+            {% endif %}
+            <div class="am-center" style="width: 90rem;">
+                    <table class="am-table am-table-bordered am-table-striped
+                            am-table-hover am-text-xl"> <tbody>
+                                    <tr class="am-primary">
+                                            <td>文件名</td>
+                                            <td>{{ filename }}</td>
+                                    </tr>
+                                    <tr class="am-primary">
+                                            <td>文件大小</td>
+                                            <td>{{ size }}&nbsp;字节</td>
+                                    </tr>
+                                    <tr class="am-primary">
+                                            <td>原始链接</td>
+                                            <td id="origuri">{{ fetchuri }}</td>
+                                    </tr>
+            {% if dlstatus == 0 %}
+                                    <tr class="am-success">
+                                            <td>下载时刻</td>
+                                            <td>{{ time }}</td>
+                                    </tr>
+                                    <tr class="am-disabled">
+                                            <td>下载链接</td>
+                                            <td id="dluri"><a href="{{ dluri }}">{{ dluri }}</a></td>
+                                    </tr>
+                                    <tr class="am-danger">
+                                            <td>哈希值(SHA256)</td>
+                                            <td>{{ hash }}</td>
+                                    </tr>
+            {% endif %}
+                            </tbody>
+                    </table>
+            </div>
+    </div>
+</div>
+{% endblock %}
+{% block add_js %}
+<script>
+$(document).ready(function() {
+    var header_height = $('#collapse-head').height();
+    var footer_height = $('#footer-fixed').height();
+    var content_height = $(window).height() - header_height - footer_height;
+    var content_width = $(window).width();
+    //高度修正
+    $('.am-vertical-align-middle').css('width', '100%');
+    $('.am-vertical-align').css('height', '100%');
+
+    //进度条自适应
+        $('#pbar').css('width', '85%');
+
+    //高度自适应
+    if (content_height < 400) {
+        $('#autoajust-logo').css('display', 'none');
+        // MAGIC 35
+        $('#banner').css('height', content_height * .35);
+    } else {
+        $('#autoajust-logo').css('width', '50%');
+        var correct_height = $('#autoajust-logo').innerWidth();
+        $('#autoajust-logo').css('height', correct_height / 10 * 3);
+        $('#banner').css('height', content_height * .40);
+    }
+    $('.am-topbar-right').css('height', header_height);
+    $('#pyrtal-interface').css('height', content_height * .55);
+
+});
+
+$(window).resize(function() {
+    //获取新数值
+    var header_height = $('#collapse-head').height();
+    var footer_height = $('#footer-fixed').height();
+    var content_height = $(window).height() - header_height - footer_height;
+    var content_width = $(window).width();
+
+    //高度自适应
+        $('#pbar').css('width', '85%');
+
+    //高度自适应
+    if (content_height < 400) {
+        $('#autoajust-logo').css('display', 'none');
+        // MAGIC 35
+        $('#banner').css('height', content_height * .35);
+    } else {
+        $('#autoajust-logo').css('display', 'block');
+        $('#autoajust-logo').css('width', '50%');
+        var correct_height = $('#autoajust-logo').innerWidth();
+        $('#autoajust-logo').css('height', correct_height / 10 * 3);
+        $('#banner').css('height', content_height * .40);
+    }
+    $('.am-topbar-right').css('height', header_height);
+    $('#pyrtal-interface').css('height', content_height * .55);
+});
+</script>
+
+{% endblock %}
