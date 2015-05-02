@@ -50,6 +50,18 @@ def entry(method=['GET', 'POST']):
         pass
     satisfy_config()
 
+    # TODO: blocked IO
+    f_hash = getattr(g, 'hash')
+    stat = os.stat(getattr(g, 'lie'))
+    f_time = time.asctime(time.localtime(stat.st_mtime))
+    f_size = stat.st_size
+    # TODO: dluri try url_for
+    return render_template('offer.html', size=f_size, time=f_time,
+            hash=f_hash, dluri='http://127.0.0.1:5000/pray/for/' + f_hash, filename=getattr(g,
+                'filename'), fetchuri=getattr(g, 'fetchuri'),
+            dlstatus=getattr(g, 'downloading'))
+
+
 def filter_uri():
     r = urlsplit(getattr(g, 'fetchuri'), 'http', False)
     if r.netloc is None:
@@ -77,9 +89,9 @@ def satisfy_config():
         raise
     # OK, now I am satisfied, offer tempf to cache content
     g.downloading = 1
-    g.filename = path.split('/')[-1]
+    g.filename = path.split('/')[-1] or 'for_fool.binary'
     g.tempfile = os.path.join(app.config['TMP_DIR'],
-            '_'.join([str(int(time.time())),
+            '_'.join([str(time.time()),
         getattr(g, 'filename')]))
     fetchuri()
 
@@ -102,7 +114,6 @@ def fetchuri():
                 + getattr(g, 'passwd') + '@' + getattr(g, 'host') + ':' +
                 getattr(g, 'port') + getattr(g, 'path') + getattr(g, 'query'),
                 stream=True, headers=req_header)
-        raise
         if r.status_code != requests.codes.ok:
             raise
         for block in r.iter_content(app.config['BUFFER_SIZE']):
@@ -114,20 +125,12 @@ def fetchuri():
 
     gc.collect()
 
-    # Download ends
+    # the download is ending...
     g.downloading = 0
-    offer_lie()
-
-def offer_lie():
-    f_hash = sha256_first128b_ver3(getattr(g, 'tempfile'), hashlib.sha256())
-    stat = os.stat(getattr(g, 'tempfile'))
-    f_time = time.asctime(time.localtime(stat.st_mtime))
-    f_size = stat.st_size
-    return render_template('offer.html', size=f_size, time=f_time,
-            hash=f_hash, dluri='http://z.cn', filename=getattr(g,
-                'filename'), fetchuri=getattr(g, 'fetchuri'),
-            dlstatus=getattr(g, 'downloading'))
-
+    g.hash = sha256_first128b_ver3(getattr(g, 'tempfile'), hashlib.sha256())
+    g.lie = os.path.join(app.config['CACHE_DIR'], getattr(g, 'hash'))
+    os.rename(getattr(g, 'tempfile'), getattr(g, 'lie'))
+    return 'ok'
 
 
 def sha256_first128b_ver3(afile, hasher, blocksize=128):
@@ -135,15 +138,11 @@ def sha256_first128b_ver3(afile, hasher, blocksize=128):
             hasher.update(buf.read(blocksize))
             return hasher.hexdigest()
 
+@app.route('/pray/for/<hash>')
+def offer_octostream(hash):
+    # TODO: send header to corrction the filename
+    return send_from_directory(app.config['CACHE_DIR'], hash)
 
-# Temp area
-@app.route('/dl')
-def setupdlpage():
-    return render_template('offer.html', size=55555,
-            time=time.asctime(time.localtime()), hash=
-            sha256_first128b_ver3('/etc/passwd', hashlib.sha256()),
-            dluri='2', filename='yolo', fetchuri='https://we.djh.im', dlstatus=0)
-    raise
 
 
 
