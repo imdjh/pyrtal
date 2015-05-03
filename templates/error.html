@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}出错啦!! {% endblock %}
+{% block banner %}
+<div id="banner">
+    <div class="am-vertical-align">
+        <div class="am-vertical-align-middle">
+    <div class="am-g am-g-fixed">
+        <div class="am-animation-scale-up">
+            <div class="logoreplace">
+                <h1 class="am-cf"><a href="/" class="am-center am-text-ir" id="autoajust-logo" style=" background-image: url({{ url_for('static', filename='assets/i/logo.png') }}) !important; ">Pyrtal</a></h1>
+            </div>
+        </div>
+        <ul class="am-avg-sm-3">
+            <li>
+                <h2 class="am-kai am-text-right am-text-xxl autoajust-text">
+                    弹指
+                </h2>
+            </li>
+            <li>
+                <h2 class="am-kai am-text-left autoajust-text am-text-xxl ">
+                    一挥间，
+                </h2>
+            </li>
+            <li style="height: 10px;"></li>
+            <li style="height: 10px;"></li>
+            <li>
+                <h2 class="am-kai am-text-right autoajust-text am-text-xxl">
+                    文件
+                </h2>
+            </li>
+            <li>
+                <h2 class="am-kai am-text-left autoajust-text am-text-xxl">
+                    在眼前！
+                </h2>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block functional_area %}
+<div class="am-vertical-align" id="pyrtal-interface" class="am-cf"> >
+    <div class="am-vertical-align-middle">
+            <div class="am-center" style="width: 90rem;">
+                    <section class="am-panel am-panel-danger">
+                            <header class="am-panel-hd">
+                                    <h2 class="am-text-xl am-panel-title">{{ exceptname }}</h2>
+                            </header>
+                            <div class="am-panel-bd"><h3 class="am-text-lg">{{ rbody }}</h3></div>
+                    </section>
+            </div>
+    </div>
+</div>
+{% endblock %}
+{% block add_js %}
+<script>
+$(document).ready(function() {
+    var header_height = $('#collapse-head').height();
+    var footer_height = $('#footer-fixed').height();
+    var content_height = $(window).height() - header_height - footer_height;
+    var content_width = $(window).width();
+    //高度修正
+    $('.am-vertical-align-middle').css('width', '100%');
+    $('.am-vertical-align').css('height', '100%');
+
+    //宣传语自适应
+    if (content_height < 400 || $(window).width() < 400) {
+        $('.autoajust-text').css('font-size', '120%');
+    }
+
+    //高度自适应
+    if (content_height < 400) {
+        $('#autoajust-logo').css('display', 'none');
+        $('#banner').css('height', content_height * .50);
+    } else {
+        $('#autoajust-logo').css('width', '75%');
+        var correct_height = $('#autoajust-logo').innerWidth();
+        $('#autoajust-logo').css('height', correct_height / 10 * 3);
+        $('#banner').css('height', content_height * .70);
+    }
+    $('.am-topbar-right').css('height', header_height);
+    $('#pyrtal-interface').css('height', content_height * .20);
+
+});
+
+$(window).resize(function() {
+    //获取新数值
+    var header_height = $('#collapse-head').height();
+    var footer_height = $('#footer-fixed').height();
+    var content_height = $(window).height() - header_height - footer_height;
+    var content_width = $(window).width();
+
+    //宣传语自适应
+    if (content_height < 400 || $(window).width() < 400) {
+        $('.autoajust-text').css('font-size', '120%');
+    } else {
+        $('.autoajust-text').removeAttr('style');
+    }
+
+    //高度自适应
+    if (content_height < 400) {
+        $('#autoajust-logo').css('display', 'none');
+        $('#banner').css('height', content_height * .50);
+    } else {
+        $('#autoajust-logo').css('display', 'block');
+        $('#autoajust-logo').css('width', '75%');
+        var correct_height = $('#autoajust-logo').innerWidth();
+        $('#autoajust-logo').css('height', correct_height / 10 * 3);
+        $('#banner').css('height', content_height * .70);
+    }
+    $('.am-topbar-right').css('height', header_height);
+    $('#pyrtal-interface').css('height', content_height * .20);
+});
+</script>
+
+
+
+
+{% endblock %}
