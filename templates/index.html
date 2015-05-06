@@ -1,43 +1,7 @@
 {% extends "base.html" %}
 {% block title %}首页{% endblock %}
 {% block banner %}
-<div id="banner">
-    <div class="am-vertical-align">
-        <div class="am-vertical-align-middle">
-    <div class="am-g am-g-fixed">
-        <div class="am-animation-scale-up">
-            <div class="logoreplace">
-                <h1 class="am-cf"><a href="/" class="am-center am-text-ir" id="autoajust-logo" style=" background-image: url({{ url_for('static', filename='assets/i/logo.png') }}) !important; ">Pyrtal</a></h1>
-            </div>
-        </div>
-        <ul class="am-avg-sm-3">
-            <li>
-                <h2 class="am-kai am-text-right am-text-xxl autoajust-text">
-                    弹指
-                </h2>
-            </li>
-            <li>
-                <h2 class="am-kai am-text-left autoajust-text am-text-xxl ">
-                    一挥间，
-                </h2>
-            </li>
-            <li style="height: 10px;"></li>
-            <li style="height: 10px;"></li>
-            <li>
-                <h2 class="am-kai am-text-right autoajust-text am-text-xxl">
-                    文件
-                </h2>
-            </li>
-            <li>
-                <h2 class="am-kai am-text-left autoajust-text am-text-xxl">
-                    在眼前！
-                </h2>
-            </li>
-        </ul>
-    </div>
-    </div>
-</div>
-</div>
+{% include "logowords.html" %}
 {% endblock %}
 
 {% block functional_area %}
