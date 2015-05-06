@@ -3,7 +3,7 @@
 # vim: set fileencoding=utf-8
 # Pyrtal is a lightweight file fetching proxy
 
-from flask import Flask, url_for, redirect, render_template, send_from_directory, request, g, abort
+from flask import Flask, url_for, redirect, render_template, send_from_directory, request, g, abort, make_response
 import requests
 import re
 import gc
@@ -43,25 +43,38 @@ def entry(method=['GET', 'POST']):
     if request.method == 'GET':
         if request.args.get('fetch') is None:
             return render_template('index.html')
+        # check cookie exists
+        elif 0:
+            f_hash = getattr(g, 'hash')
+            stat = os.stat(getattr(g, 'cake'))
+            f_time = time.asctime(time.localtime(stat.st_mtime))
+            f_size = stat.st_size
+            return render_template('offer.html', size=f_size, time=f_time,
+            hash=f_hash, dluri='http://127.0.0.1:5000/pray/for/' + f_hash, filename=getattr(g,
+                'filename'), fetchuri=getattr(g, 'fetchuri'),
+            dlstatus=getattr(g, 'downloading'), avgspeed=getattr(g,
+                'avg_speed'))
         else:
             g.fetchuri = request.args.get('fetch').strip()
+            # TODO: blocked IO
             filter_uri()
+            satisfy_config()
+
     else:
         #TODO: Convert JSON recved bind to g
         pass
-    satisfy_config()
-
-    # TODO: blocked IO
     f_hash = getattr(g, 'hash')
     stat = os.stat(getattr(g, 'cake'))
     f_time = time.asctime(time.localtime(stat.st_mtime))
     f_size = stat.st_size
     # TODO: dluri try url_for
-    return render_template('offer.html', size=f_size, time=f_time,
+    offer_response = make_response(render_template('offer.html', size=f_size, time=f_time,
             hash=f_hash, dluri='http://127.0.0.1:5000/pray/for/' + f_hash, filename=getattr(g,
                 'filename'), fetchuri=getattr(g, 'fetchuri'),
             dlstatus=getattr(g, 'downloading'), avgspeed=getattr(g,
-                'avg_speed'))
+                'avg_speed')))
+    offer_response.set_cookie('file', value=getattr(g, 'filename'))
+    return offer_response
 
 
 def filter_uri():
@@ -114,12 +127,13 @@ def fetchuri():
     with open(getattr(g, 'tempfile'), 'wb') as fd:
         req_header = {'User-Agent': 'pyrtal/0.0.1', 'Host': getattr(g, 'host')}
         requests_uri = getattr(g, 'scheme') + '://' + getattr(g, 'user') + ':' + getattr(g, 'passwd') + '@' + getattr(g, 'host') + ':' + getattr(g, 'port') + getattr(g, 'path') + getattr(g, 'query')
+        #flask will capture exceptions
         r = requests.get(requests_uri, stream=True, headers=req_header)
 
-
+        # handle unexcept condition
         if r.status_code != requests.codes.ok:
-            #debug hard
-            abort(404)
+            raise requests.exceptions.RequestException
+
         g.suggests_size = r.headers.get('content-length')
         if getattr(g, 'suggests_size') is None:
             fd.write(r.content)
