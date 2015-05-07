@@ -37,9 +37,9 @@ re_query = re.compile(app.config['BL_QUERY'])
 
 
 # Let's web2.0
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 # TODO: if have cookie, go to offer_cake()
-def entry(method=['GET', 'POST']):
+def entry():
     if request.method == 'GET':
         if request.args.get('fetch') is None:
             return render_template('index.html')
@@ -63,7 +63,13 @@ def entry(method=['GET', 'POST']):
 
     else:
         #TODO: Convert JSON recved bind to g
-        pass
+        app.logger.error(type(request.get_json()))
+        obj = request.get_json(force=True)
+        app.logger.info(obj.get('host', ''))
+        raise
+        filter_uri()
+        satisfy_config()
+
     f_hash = getattr(g, 'hash')
     stat = os.stat(getattr(g, 'cake'))
     f_time = time.asctime(time.localtime(stat.st_mtime))

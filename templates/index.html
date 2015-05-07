@@ -14,11 +14,15 @@
                         <div class="am-form-group am-form-icon
                                 am-form-group-md " id="functional-area">
                             <i class="am-icon-link am-icon-fw"></i>
-                            <input type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL" name="pyrtal-request">
+                            <input id="uri" type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL" name="pyrtal-request">
                         </div>
                     </div>
                     <div class="am-u-sm-2">
-                        <button type="submit" class="am-btn am-btn-primary am-btn-lg"><i class="am-icon-download"></i> 提 交</button>
+                        <span id="submit-btm" type="submit"
+                                class="am-btn am-btn-primary
+                                am-btn-lg"><i
+                                class="am-icon-download"></i> 提 交
+                        </span>
                     </div>
                 </form>
             </div>
@@ -88,14 +92,43 @@ $(window).resize(function() {
 
 <script src="{{ url_for('static', filename='assets/js/uri.js') }}"></script>
 <script type="text/javascript">
-(function parseURI() {
-        res = URI.parse("://baidu");
-        //alert(res["errors"]);
-        if (res["errors"] != "") {
-                $('#functional-area').addClass('am-form-error');
+$('#uri').blur(function () {
+        res = URI.parse($('#uri').val());
+        if (res["reference"] != "absolute") {
+                var temp = res["path"];
+                var slash_spliter = temp.indexOf('/');
+                res["host"] = temp.substr(0, slash_spliter);
+                res["path"] = temp.substr(slash_spliter, temp.length);
+        }
+        if (res["scheme"] == null) {
+                res["scheme"] = 'http';
         }
 
-})();
+        if ("" === res["host"] || res["errors"].length != 0)
+            {
+                $('#functional-area').addClass('am-form-error');
+        } else {
+                $('#functional-area').removeClass('am-form-error');
+                if (!Number(res['port'])) {
+                        res['port'] = "80";
+                }
+
+        // DEBUG: HARD
+        alert(JSON.stringify(res));
+        post_json();
+        }
+});
+function post_json() {
+        $.ajax({
+                type: "POST",
+        url: "/",
+        data: JSON.stringify(res),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {alert(data);}
+
+        });
+}
 
 
 
