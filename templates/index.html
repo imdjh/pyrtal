@@ -11,7 +11,8 @@
                 <form class="am-form" role="form" action="/portal">
                     <div class="am-u-sm-1" style="height: 10px;"></div>
                     <div class="am-u-sm-8">
-                        <div class="am-form-group am-form-icon am-form-group-md am-form-error">
+                        <div class="am-form-group am-form-icon
+                                am-form-group-md " id="functional-area">
                             <i class="am-icon-link am-icon-fw"></i>
                             <input type="text" class="am-form-field am-input-md" placeholder="请正确的输入URL" name="pyrtal-request">
                         </div>
@@ -86,4 +87,20 @@ $(window).resize(function() {
 </script>
 
 <script src="{{ url_for('static', filename='assets/js/uri.js') }}"></script>
+<script type="text/javascript">
+(function parseURI() {
+        res = URI.parse("://baidu");
+        //alert(res["errors"]);
+        if (res["errors"] != "") {
+                $('#functional-area').addClass('am-form-error');
+        }
+
+})();
+
+
+
+
+
+
+</script>
 {% endblock %}

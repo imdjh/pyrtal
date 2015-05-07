@@ -43,15 +43,16 @@ def entry(method=['GET', 'POST']):
     if request.method == 'GET':
         if request.args.get('fetch') is None:
             return render_template('index.html')
-        # check cookie exists
-        elif 0:
+        elif request.cookies.get('file'):
+            raise
+            f_name = request.cookies.get('file')
             f_hash = getattr(g, 'hash')
             stat = os.stat(getattr(g, 'cake'))
             f_time = time.asctime(time.localtime(stat.st_mtime))
             f_size = stat.st_size
             return render_template('offer.html', size=f_size, time=f_time,
-            hash=f_hash, dluri='http://127.0.0.1:5000/pray/for/' + f_hash, filename=getattr(g,
-                'filename'), fetchuri=getattr(g, 'fetchuri'),
+            hash=f_hash, dluri='http://127.0.0.1:5000/pray/for/' + f_hash,
+            filename=f_file, fetchuri=getattr(g, 'fetchuri'),
             dlstatus=getattr(g, 'downloading'), avgspeed=getattr(g,
                 'avg_speed'))
         else:
@@ -123,7 +124,6 @@ def rescue_broken_uri():
     filter_uri()
 
 def fetchuri():
-    # TODO: pleasure people with cookie
     with open(getattr(g, 'tempfile'), 'wb') as fd:
         req_header = {'User-Agent': 'pyrtal/0.0.1', 'Host': getattr(g, 'host')}
         requests_uri = getattr(g, 'scheme') + '://' + getattr(g, 'user') + ':' + getattr(g, 'passwd') + '@' + getattr(g, 'host') + ':' + getattr(g, 'port') + getattr(g, 'path') + getattr(g, 'query')
@@ -209,4 +209,4 @@ def offer_robotsrule():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1')
+    app.run(debug=True, host='0.0.0.0')
